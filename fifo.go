@@ -9,7 +9,7 @@ func fifo(memory []int, data int) {
 	memory[len(memory)-1] = data
 }
 
-func FirstInFirstOut(page int, queue []int) {
+func Fifo(page int, queue []int) {
 	memory := utils.GetMemory(page)
 	for _, d := range queue {
 		index := utils.GetIndex(memory, d)
