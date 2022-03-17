@@ -10,15 +10,11 @@ func fifo(memory []int, data int) {
 }
 
 func FirstInFirstOut(page int, queue []int) {
-	memory := make([]int, page)
-	for index := range memory {
-		memory[index] = -1
-	}
-
-	for _, data := range queue {
-		index := utils.GetIndex(memory, data)
+	memory := utils.GetMemory(page)
+	for _, d := range queue {
+		index := utils.GetIndex(memory, d)
 		if index == -1 {
-			fifo(memory, data)
+			fifo(memory, d)
 		}
 		utils.PrintMemory(memory)
 	}
