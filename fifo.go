@@ -1,6 +1,10 @@
 package main
 
-import "github.com/Kininaru/operating-system-practicum/utils"
+import (
+	"fmt"
+
+	"github.com/Kininaru/operating-system-practicum/utils"
+)
 
 func fifo(memory []int, data int) {
 	for i := 0; i < len(memory)-1; i++ {
@@ -10,12 +14,16 @@ func fifo(memory []int, data int) {
 }
 
 func Fifo(page int, queue []int) {
+	count := 0
 	memory := utils.GetMemory(page)
 	for _, d := range queue {
+		utils.PrintMemory(memory)
 		index := utils.GetIndex(memory, d)
 		if index == -1 {
+			count++
 			fifo(memory, d)
 		}
-		utils.PrintMemory(memory)
 	}
+	fmt.Println("Final: ")
+	utils.PrintMemory(memory)
 }

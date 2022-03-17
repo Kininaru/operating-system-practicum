@@ -1,16 +1,13 @@
 package main
 
 import (
+	"fmt"
 	"math"
 
 	"github.com/Kininaru/operating-system-practicum/utils"
 )
 
 func opt(memory, queue []int) {
-	if utils.GetIndex(memory, queue[0]) != -1 {
-		return
-	}
-
 	if index := utils.GetIndex(memory, -1); index != -1 {
 		memory[index] = queue[0]
 		return
@@ -38,9 +35,16 @@ func opt(memory, queue []int) {
 }
 
 func Opt(page int, queue []int) {
+	count := 0
 	memory := utils.GetMemory(page)
-	for i := range queue {
-		opt(memory, queue[i:])
+	for i, p := range queue {
 		utils.PrintMemory(memory)
+		if utils.GetIndex(memory, p) != -1 {
+			continue
+		}
+		count++
+		opt(memory, queue[i:])
 	}
+	fmt.Println("Final: ")
+	utils.PrintMemory(memory)
 }

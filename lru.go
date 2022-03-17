@@ -2,16 +2,13 @@ package main
 
 import (
 	"errors"
+	"fmt"
 	"math"
 
 	"github.com/Kininaru/operating-system-practicum/utils"
 )
 
 func lru(memory, lastUsed []int, page, now int) {
-	if utils.GetIndex(memory, page) != -1 {
-		return
-	}
-
 	if index := utils.GetIndex(memory, -1); index != -1 {
 		memory[index] = page
 		lastUsed[index] = now
@@ -39,7 +36,12 @@ func Lru(page int, queue []int) {
 	lastUsed := make([]int, page)
 
 	for i, d := range queue {
-		lru(memory, lastUsed, d, i)
 		utils.PrintMemory(memory)
+		if utils.GetIndex(memory, d) != -1 {
+			continue
+		}
+		lru(memory, lastUsed, d, i)
 	}
+	fmt.Println("Final: ")
+	utils.PrintMemory(memory)
 }
