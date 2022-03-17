@@ -1,7 +1,6 @@
 package main
 
 import (
-	"errors"
 	"fmt"
 	"math"
 
@@ -23,10 +22,6 @@ func lru(memory, lastUsed []int, page, now int) {
 		}
 	}
 
-	if index == -1 {
-		panic(errors.New("invalid index in lru"))
-	}
-
 	memory[index] = page
 	lastUsed[index] = now
 }
@@ -34,14 +29,16 @@ func lru(memory, lastUsed []int, page, now int) {
 func Lru(page int, queue []int) {
 	memory := utils.GetMemory(page)
 	lastUsed := make([]int, page)
-
+	var count float64
 	for i, d := range queue {
 		utils.PrintMemory(memory)
 		if utils.GetIndex(memory, d) != -1 {
 			continue
 		}
 		lru(memory, lastUsed, d, i)
+		count++
 	}
 	fmt.Println("Final: ")
 	utils.PrintMemory(memory)
+	fmt.Printf("缺页率: %5f", count/float64(len(queue)))
 }

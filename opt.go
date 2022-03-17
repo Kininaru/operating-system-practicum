@@ -35,7 +35,7 @@ func opt(memory, queue []int) {
 }
 
 func Opt(page int, queue []int) {
-	count := 0
+	var count float64
 	memory := utils.GetMemory(page)
 	for i, p := range queue {
 		utils.PrintMemory(memory)
@@ -47,4 +47,5 @@ func Opt(page int, queue []int) {
 	}
 	fmt.Println("Final: ")
 	utils.PrintMemory(memory)
+	fmt.Printf("缺页率: %5f", count/float64(len(queue)))
 }
