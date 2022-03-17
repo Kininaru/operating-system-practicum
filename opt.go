@@ -11,6 +11,11 @@ func opt(memory, queue []int) {
 		return
 	}
 
+	if index := utils.GetIndex(memory, -1); index != -1 {
+		memory[index] = queue[0]
+		return
+	}
+
 	page2next := make(map[int]int)
 	for i, d := range queue[1:] {
 		page2next[d] = int(math.Min(float64(page2next[d]), float64(i)))

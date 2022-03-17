@@ -6,15 +6,10 @@ import (
 )
 
 func main() {
-	queue := []int{1, 2, 3, 0, 3}
+	queue := []int{1, 2, 3, 0, 3, 5, 6, 4, 9}
 	page := 4
-	policy := "fifo"
-	for _, data := range queue {
-		if data >= page || data < 0 {
-			panic(errors.New(fmt.Sprintf("Page index out of bounds. The error index is %d. ", data)))
-		}
-	}
-
+	policy := "opt"
+	
 	switch policy {
 	case "fifo":
 		FirstInFirstOut(page, queue)
