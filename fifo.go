@@ -26,5 +26,5 @@ func Fifo(page int, queue []int) {
 	}
 	fmt.Println("Final: ")
 	utils.PrintMemory(memory)
-	fmt.Printf("缺页率: %5f", count/float64(len(queue)))
+	fmt.Printf("缺页率: %.3f%%", count/float64(len(queue))*100)
 }
