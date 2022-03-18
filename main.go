@@ -8,7 +8,6 @@ import (
 )
 
 func main() {
-	fmt.Println(os.Args)
 	page := 4
 	strategy := "fifo"
 	var err error
